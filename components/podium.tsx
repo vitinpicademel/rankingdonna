@@ -13,12 +13,14 @@ interface PodiumProps {
 export function Podium({ top3 }: PodiumProps) {
   const [first, second, third] = top3;
 
+  const getFirstName = (fullName: string) => fullName.split(" ")[0] || fullName;
+
   const podiumItems = [
     { 
       rank: second, 
       position: "left", 
       medal: "silver", 
-      height: "h-[360px]",
+      height: "h-[260px] md:h-[360px]",
       delay: 0.1,
       floatDelay: 0,
     },
@@ -26,26 +28,27 @@ export function Podium({ top3 }: PodiumProps) {
       rank: first, 
       position: "center", 
       medal: "gold", 
-      height: "h-[420px]",
+      height: "h-[300px] md:h-[420px]",
       delay: 0,
       floatDelay: 0.3,
-      scale: 1.1,
+      scale: 1.05,
       zIndex: 20,
     },
     { 
       rank: third, 
       position: "right", 
       medal: "bronze", 
-      height: "h-[320px]",
+      height: "h-[240px] md:h-[320px]",
       delay: 0.2,
       floatDelay: 0.6,
     },
   ].filter((item) => item.rank);
 
   return (
-    <div className="w-full h-full flex items-end justify-center relative py-10">
+    <div className="w-full h-full flex items-end justify-center relative py-6 md:py-10 gap-2 md:gap-4">
       {podiumItems.map((item, index) => {
         const isGold = item.medal === "gold";
+        const displayName = getFirstName(item.rank.broker.nome);
         
         // Estilos premium por medalha
         const medalStyles = {
@@ -89,7 +92,7 @@ export function Podium({ top3 }: PodiumProps) {
             // Animação de flutuação contínua
             whileHover={{ scale: (item.scale || 1) * 1.02 }}
             className={cn(
-              "flex flex-col items-center flex-1 relative max-w-[33.333%]",
+              "flex flex-col items-center flex-1 min-w-0 basis-1/3 relative max-w-[33.333%]",
               item.position === "center" ? "order-2" : item.position === "left" ? "order-1" : "order-3"
             )}
             style={{
@@ -111,7 +114,7 @@ export function Podium({ top3 }: PodiumProps) {
               {/* Card do Pódio */}
               <div
                 className={cn(
-                  "relative w-full max-w-full rounded-t-3xl flex flex-col items-center justify-end p-4 md:p-6 transition-all",
+                  "relative w-full max-w-full rounded-t-3xl flex flex-col items-center justify-end px-1 py-3 md:px-6 md:py-6 transition-all",
                   item.height,
                   styles.border,
                   styles.shadow,
@@ -132,9 +135,9 @@ export function Podium({ top3 }: PodiumProps) {
                     initial={{ opacity: 0, y: -20, scale: 0.5 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ delay: item.delay + 0.3, type: "spring", stiffness: 200 }}
-                    className="absolute -top-12 md:-top-16"
+                    className="absolute -top-10 md:-top-16"
                   >
-                    <Crown className="w-16 h-16 md:w-20 md:h-20 text-yellow-400 drop-shadow-2xl" fill="currentColor" />
+                    <Crown className="w-12 h-12 md:w-20 md:h-20 text-yellow-400 drop-shadow-2xl" fill="currentColor" />
                   </motion.div>
                 )}
 
@@ -145,7 +148,7 @@ export function Podium({ top3 }: PodiumProps) {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: item.delay + 0.2, type: "spring" }}
                     className={cn(
-                      "absolute -top-8 md:-top-10 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center font-bold text-2xl md:text-3xl shadow-xl",
+                      "absolute -top-7 md:-top-10 w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center font-bold text-xl md:text-3xl shadow-xl",
                       item.medal === "silver" 
                         ? "bg-slate-300 text-slate-800 border-2 border-slate-400" 
                         : "bg-orange-700 text-white border-2 border-orange-800"
@@ -156,7 +159,7 @@ export function Podium({ top3 }: PodiumProps) {
                 )}
 
                 {/* Avatar */}
-                <div className="mb-4 md:mb-6 relative z-10">
+                <div className="mb-3 md:mb-6 relative z-10">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -167,7 +170,7 @@ export function Podium({ top3 }: PodiumProps) {
                       size="lg"
                       borderColor="strong"
                       className={cn(
-                        "w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
+                        "w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28",
                         isGold && "ring-4 ring-yellow-400/50"
                       )}
                     />
@@ -181,21 +184,21 @@ export function Podium({ top3 }: PodiumProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: item.delay + 0.4 }}
-              className="mt-8 md:mt-10 text-center space-y-3 md:space-y-4 w-full px-2"
+              className="mt-4 md:mt-10 text-center space-y-2 md:space-y-4 w-full px-2"
             >
               <p className={cn(
                 "font-bold text-foreground truncate",
-                isGold ? "text-lg md:text-xl lg:text-2xl" : "text-base md:text-lg"
+                isGold ? "text-xs sm:text-sm md:text-xl lg:text-2xl" : "text-xs md:text-lg"
               )}>
-                {item.rank.broker.nome}
+                {displayName}
               </p>
               <p className={cn(
                 "text-success font-bold",
-                isGold ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
+                isGold ? "text-[10px] sm:text-xs md:text-2xl lg:text-3xl" : "text-[10px] sm:text-xs md:text-xl"
               )}>
                 {formatCurrency(item.rank.valorTotal)}
               </p>
-              <p className="text-sm md:text-base text-muted-foreground font-medium">
+              <p className="text-[10px] sm:text-xs md:text-base text-muted-foreground font-medium">
                 {item.rank.quantidadeVendas} {item.rank.quantidadeVendas === 1 ? "venda" : "vendas"}
               </p>
             </motion.div>
