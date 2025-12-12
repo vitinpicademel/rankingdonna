@@ -375,6 +375,37 @@ export class ImoviewService {
     return await deriveFromVendas();
   }
 
+  /**
+   * Busca fotos reais dos corretores no endpoint App_RetornarCorretores
+   * Retorna um mapa nome-normalizado -> urlFoto
+   */
+  async fetchBrokerPhotos(): Promise<Record<string, string>> {
+    if (SHOULD_USE_MOCK) {
+      return {};
+    }
+
+    try {
+      // Tenta com autenticação App_ (requer user/senha)
+      const appClient = await createAppAxiosClient();
+      const resp = await appClient.get<any[]>("/Usuario/App_RetornarCorretores");
+      const lista = resp.data || [];
+
+      const map: Record<string, string> = {};
+      lista.forEach((u: any) => {
+        const nome = u.Nome || u.nome || "";
+        const foto = u.urlfoto || u.foto || u.FotoUrl || u.fotoUrl || u.Foto || u.foto;
+        if (!nome) return;
+        if (!foto) return;
+        const norm = normalizeName(nome);
+        map[norm] = foto;
+      });
+      return map;
+    } catch (err) {
+      console.warn("Não foi possível obter fotos reais dos corretores:", err);
+      return {};
+    }
+  }
+
   async fetchVendas(periodo?: { start: Date; end: Date }): Promise<Venda[]> {
     if (SHOULD_USE_MOCK) {
       await new Promise((resolve) => setTimeout(resolve, 300));

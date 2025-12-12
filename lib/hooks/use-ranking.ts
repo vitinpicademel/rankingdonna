@@ -16,6 +16,12 @@ export function useRanking(periodo: Periodo, onNewSale?: () => void) {
     queryFn: () => imoviewService.fetchCorretores(),
   });
 
+  const { data: fotosMap } = useQuery({
+    queryKey: ["corretores-fotos"],
+    queryFn: () => imoviewService.fetchBrokerPhotos(),
+    staleTime: 5 * 60 * 1000,
+  });
+
   const { data: vendas, isLoading: isLoadingVendas } = useQuery({
     queryKey: ["vendas", periodo, start.toISOString(), end.toISOString()],
     queryFn: () => imoviewService.fetchVendas({ start, end }),
@@ -53,7 +59,18 @@ export function useRanking(periodo: Periodo, onNewSale?: () => void) {
     });
 
     // Cria ranking ordenado por valor total, mantendo quem tem 0
-    const rankingArray: BrokerRanking[] = corretores
+    // Aplica fotos reais quando houver
+    const corretoresComFoto = corretores.map((broker) => {
+      if (!fotosMap) return broker;
+      const norm = broker.nome.trim().toLowerCase();
+      const foto = fotosMap[norm];
+      if (foto) {
+        return { ...broker, foto };
+      }
+      return broker;
+    });
+
+    const rankingArray: BrokerRanking[] = corretoresComFoto
       .map((broker) => {
         const stats =
           vendasPorCorretor.get(broker.id) || {
