@@ -7,6 +7,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "brunna": "/brokers/Brunna.png",
   "carla": "/brokers/Carla.png",
   "gabrielle": "/brokers/Gabrielle.png",
+  "giovanna": "/brokers/Giovanna.png",
   "hugo": "/brokers/Hugo.png",
   "isla": "/brokers/Isla.png",
   "jafferson": "/brokers/Jafferson.png",
@@ -16,6 +17,14 @@ export const BROKER_AVATARS: Record<string, string> = {
   "leticia": "/brokers/Letícia.png", // Cuidado com acento no arquivo
   "liliam": "/brokers/Liliam.png",
   "lavi": "/brokers/Lavi.png", // Supondo pelo print
+  "lorena": "/brokers/Lorena.png",
+  "marcio": "/brokers/Marcio.png",
+  "levi": "/brokers/Levi.png",
+  "matheus": "/brokers/Matheus.png",
+  "paula": "/brokers/Paula.png",
+  "rubismar": "/brokers/Rubismar.png",
+  "vanessa": "/brokers/Vanessa.png",
+  "weslley": "/brokers/Weslley.png",
 
   // Casos Compostos (Crucial: chave composta para diferenciar)
   "ana carolina": "/brokers/Ana Carolina.png",
