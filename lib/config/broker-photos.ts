@@ -11,6 +11,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "hugo": "/brokers/Hugo.png",
   "isla": "/brokers/Isla.png",
   "jefferson": "/brokers/Jefferson.png",
+  "jafferson": "/brokers/Jefferson.png", // alias caso API venha com 'Jafferson'
   "jaqueline": "/brokers/Jaqueline.png",
   "julia": "/brokers/Julia.png",
   "juliana": "/brokers/Juliana.png",
