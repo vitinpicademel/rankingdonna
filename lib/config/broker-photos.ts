@@ -1,13 +1,13 @@
 /**
- * Mapeamento manual de fotos de corretores.
- * As chaves devem ser o nome normalizado (trim + lowercase).
- * Os arquivos devem estar em /public/brokers/...
+ * Mapeamento manual de fotos de corretores por PRIMEIRO NOME (minúsculo, sem acentos).
+ * Ex: "mariane": "/brokers/mariane.jpg"
+ * Obs: Se houver duas pessoas com o mesmo primeiro nome, ambas usarão a mesma foto.
  */
 export const BROKER_AVATARS: Record<string, string> = {
   // Exemplos (adicione/ajuste conforme tiver os arquivos em /public/brokers):
-  // "marcio adriano": "/brokers/marcio-adriano.jpg",
-  // "lorena fernandes": "/brokers/lorena-fernandes.jpg",
-  // "lauanda azara": "/brokers/lauanda-azara.jpg",
+  // "marcio": "/brokers/marcio.jpg",
+  // "lorena": "/brokers/lorena.jpg",
+  // "lauanda": "/brokers/lauanda.jpg",
 };
 
 

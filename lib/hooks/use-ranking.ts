@@ -54,11 +54,18 @@ export function useRanking(periodo: Periodo, onNewSale?: () => void) {
     });
 
     // Cria ranking ordenado por valor total, mantendo quem tem 0
-    const normalize = (name: string) => name.trim().toLowerCase();
+    const normalizeFirstName = (name: string) =>
+      name
+        .trim()
+        .split(" ")[0]
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
     // Aplica fotos configuradas localmente quando houver
+    // Obs: se houver dois corretores com o mesmo primeiro nome, eles compartilharão a mesma foto.
     const corretoresComFoto = corretores.map((broker) => {
-      const norm = normalize(broker.nome);
+      const norm = normalizeFirstName(broker.nome);
       const foto = BROKER_AVATARS[norm];
       if (foto) {
         return { ...broker, foto };
