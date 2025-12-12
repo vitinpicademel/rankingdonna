@@ -20,6 +20,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "lavi": "/brokers/Lavi.png", // Supondo pelo print
   "lauanda": "/brokers/Lauanda.png",
   "lorena": "/brokers/Lorena.png",
+  "lilian": "/brokers/Lilian.png",
   "marcio": "/brokers/Marcio.png",
   "wellington": "/brokers/Wellington.png",
   "cinara": "/brokers/Cinara.png",
@@ -31,6 +32,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "paula": "/brokers/Paula.png",
   "rubismar": "/brokers/Rubismar.png",
   "ricardo": "/brokers/Ricardo.png",
+  "pedro": "/brokers/Pedro Tito.png",
   "tainara": "/brokers/Tainara.png",
   "vanessa": "/brokers/Vanessa.png",
   "weslley": "/brokers/Weslley.png",
@@ -41,6 +43,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "giovanna ferreira": "/brokers/Giovanna Ferreira.png",
   // Para João Pablo, o sistema usa só o primeiro nome; mantenha o arquivo em /brokers/João Pablo.png se preferir e ajuste aqui se mudar a lógica
   "joao": "/brokers/João Pablo.png",
+  "pedro tito": "/brokers/Pedro Tito.png",
 
   // Adicione outros nomes compostos aqui conforme necessário
 };
