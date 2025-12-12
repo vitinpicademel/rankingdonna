@@ -22,8 +22,12 @@ export const BROKER_AVATARS: Record<string, string> = {
   "marcio": "/brokers/Marcio.png",
   "levi": "/brokers/Levi.png",
   "matheus": "/brokers/Matheus.png",
+  "mariane": "/brokers/Mariane.png",
+  "morena": "/brokers/Morena.png",
   "paula": "/brokers/Paula.png",
   "rubismar": "/brokers/Rubismar.png",
+  "ricardo": "/brokers/Ricardo.png",
+  "tainara": "/brokers/Tainara.png",
   "vanessa": "/brokers/Vanessa.png",
   "weslley": "/brokers/Weslley.png",
 
