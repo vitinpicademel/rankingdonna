@@ -17,6 +17,7 @@ export const BROKER_AVATARS: Record<string, string> = {
   "leticia": "/brokers/Letícia.png", // Cuidado com acento no arquivo
   "liliam": "/brokers/Liliam.png",
   "lavi": "/brokers/Lavi.png", // Supondo pelo print
+  "lauanda": "/brokers/Lauanda.png",
   "lorena": "/brokers/Lorena.png",
   "marcio": "/brokers/Marcio.png",
   "levi": "/brokers/Levi.png",
