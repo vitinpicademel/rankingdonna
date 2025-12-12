@@ -1,13 +1,13 @@
-/**
- * Mapeamento manual de fotos de corretores por PRIMEIRO NOME (minúsculo, sem acentos).
- * Ex: "mariane": "/brokers/mariane.jpg"
- * Obs: Se houver duas pessoas com o mesmo primeiro nome, ambas usarão a mesma foto.
- */
+// Mapeamento: "primeironome" -> "/caminho/do/arquivo.extensao"
+// Atenção à extensão e ao nome exato do arquivo em /public/brokers/
 export const BROKER_AVATARS: Record<string, string> = {
-  // Exemplos (adicione/ajuste conforme tiver os arquivos em /public/brokers):
-  // "marcio": "/brokers/marcio.jpg",
-  // "lorena": "/brokers/lorena.jpg",
-  // "lauanda": "/brokers/lauanda.jpg",
+  // Exemplo: Se o arquivo na pasta public/brokers for "mariane-perfil.jpg"
+  "mariane": "/brokers/mariane.jpg",
+  "joao": "/brokers/joao.png",
+  "lorena": "/brokers/lorena.jpeg", // Atenção à extensão!
+  "marcio": "/brokers/marcio_adriano.jpg",
+  "fernanda": "/brokers/fernanda.jpg",
+  // Adicione todos os outros aqui...
 };
 
 
