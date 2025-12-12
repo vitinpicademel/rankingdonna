@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useRef, useEffect, useCallback } from "react";
 import { imoviewService } from "@/lib/services/imoview";
+import { BROKER_AVATARS } from "@/lib/config/broker-photos";
 import { BrokerRanking, Periodo } from "@/lib/types";
 import { getPeriodDates } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -14,12 +15,6 @@ export function useRanking(periodo: Periodo, onNewSale?: () => void) {
   const { data: corretores, isLoading: isLoadingCorretores } = useQuery({
     queryKey: ["corretores"],
     queryFn: () => imoviewService.fetchCorretores(),
-  });
-
-  const { data: fotosMap } = useQuery({
-    queryKey: ["corretores-fotos"],
-    queryFn: () => imoviewService.fetchBrokerPhotos(),
-    staleTime: 5 * 60 * 1000,
   });
 
   const { data: vendas, isLoading: isLoadingVendas } = useQuery({
@@ -59,11 +54,12 @@ export function useRanking(periodo: Periodo, onNewSale?: () => void) {
     });
 
     // Cria ranking ordenado por valor total, mantendo quem tem 0
-    // Aplica fotos reais quando houver
+    const normalize = (name: string) => name.trim().toLowerCase();
+
+    // Aplica fotos configuradas localmente quando houver
     const corretoresComFoto = corretores.map((broker) => {
-      if (!fotosMap) return broker;
-      const norm = broker.nome.trim().toLowerCase();
-      const foto = fotosMap[norm];
+      const norm = normalize(broker.nome);
+      const foto = BROKER_AVATARS[norm];
       if (foto) {
         return { ...broker, foto };
       }
